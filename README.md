@@ -29,5 +29,7 @@ API
   - Most Comprehensive Cryptocurrency API
 
 Entity Relati0onship Diagram
+
+
 ![image](https://github.com/ItsAlbi007/CryptoTracker/assets/145096395/c379ccfc-907c-4841-b401-1f976c3b70f8)
 
