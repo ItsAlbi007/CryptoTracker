@@ -13,6 +13,8 @@ As a user, I want the ability to...
   - view all crypto coin list. 
   - scroll though crypto coins
   - and see the graph hour/day/week/month
+  - 
+![image](https://github.com/ItsAlbi007/CryptoTracker/assets/145096395/3f7c3b7f-bc7f-4289-9571-1cede9803c7d)
 
 Technologies Used
   - MongoDB
