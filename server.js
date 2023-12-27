@@ -12,9 +12,14 @@ const path = require('path') // import path module
 
 
 
-// Create the app object
+// Create the app object + set up view engine
 
 const app = express() // call the express function
+
+//view engine - ejs
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 
 // Middleware
