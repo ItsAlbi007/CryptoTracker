@@ -24,7 +24,7 @@ middleware(app)
 
 
 //routes
-
+// basic home route
 app.get('/', (req, res) => {
   const { username, loggedIn, userId} = req.session
  // res.send('the app is connected')
@@ -32,6 +32,16 @@ app.get('/', (req, res) => {
 })
 
 app.use('/users', UserRouter)
+
+// error page
+app.get('/error', (req, res) => {
+  const error = req.query.error || 'Ope! Something went wrong ... try again'
+
+  const { username, loggedIn, userId} = req.session
+
+ // res.send(error)
+ res.render('error.ejs', { error, userId, username, loggedIn })
+})
 
 //server listner
 const PORT = process.env.PORT
