@@ -45,8 +45,6 @@ const middleware = (app) => {
 }
 
 
-
-
 // Export the Middleware function
 
 module.exports = middleware
