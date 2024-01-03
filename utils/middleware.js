@@ -16,6 +16,8 @@ const middleware = (app) => {
     // EVERY request is first processed through middleware
     // method-override - allows us to use forms to their full potential
   app.use(methodOverride('_method'))
+    // this will allow us to get data from forms as req.body
+  app.use(express.urlencoded({ extended: true}))
     // morgan logs our request to the console
   app.use(morgan('tiny')) // tiny is a qualifier thats says - be short
     // to server stylesheets, we use static files in the public drectory
