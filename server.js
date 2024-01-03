@@ -6,7 +6,7 @@ require('dotenv').config()
 const path = require('path')
 const middleware = require('./utils/middleware')
 //import routers
-
+const UserRouter = require('./controllers/userControllers')
 
 
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
  res.render('home.ejs', { username, loggedIn, userId })
 })
 
-
+app.use('/users', UserRouter)
 
 //server listner
 const PORT = process.env.PORT
