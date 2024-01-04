@@ -1,7 +1,6 @@
 // import dependecies
 
 const express = require ('express')
-const { appendFile } = require('fs')
 require('dotenv').config()
 const path = require('path')
 const middleware = require('./utils/middleware')
