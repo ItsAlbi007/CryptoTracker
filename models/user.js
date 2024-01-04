@@ -18,9 +18,9 @@ const { Schema, model } = mongoose
 // console.log(a)
 // console.log(b)
 
-///////////////////////////
+
 //// Schema definition ////
-///////////////////////////
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -33,12 +33,12 @@ const userSchema = new Schema({
     }
 })
 
-///////////////////////////
+
 //// create user model ////
-///////////////////////////
+
 const User = model('User', userSchema)
 
-///////////////////////////
+
 //// export user model ////
-///////////////////////////
+
 module.exports = User

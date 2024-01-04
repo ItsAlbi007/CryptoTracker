@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<div class="container center">
+  <div class="container row text-center">
+    <% coin.forEach((c) => {%>
+        <div class="card me-3 coincard">
+            <img src="" alt="" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title"><%= c.name.offical %></h5>
+            </div>
+        </div>
+    <% }) %>
+    
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

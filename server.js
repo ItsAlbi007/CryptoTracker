@@ -1,33 +1,33 @@
-//////////////////////////////////
+
 //// Import Dependencies      ////
-//////////////////////////////////
+
 const express = require('express') // import express framework
 require('dotenv').config() // import/load ENV variables
 const path = require('path') // import path module
 const middleware = require('./utils/middleware')
-/////////////////////////
+
 //// Import Routers  ////
-/////////////////////////
+
 const UserRouter = require('./controllers/userControllers')
 const CryptoRouter = require('./controllers/cryptoControllers')
 
-////////////////////////////////////////////////////
-//// Create the app object + set up view engine ////
-////////////////////////////////////////////////////
+
+// Create the app object + set up view engine 
+
 const app = express() // call the express function
 
 // view engine - ejs
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-/////////////////////
+
 //// Middleware  ////
-/////////////////////
+
 middleware(app)
 
-/////////////////
+
 //// Routes  ////
-/////////////////
+
 // basic home route
 app.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
@@ -48,9 +48,8 @@ app.get('/error', (req, res) => {
     res.render('error.ejs', { error, userId, username, loggedIn })
 })
 
-//////////////////////////
 //// Server Listener  ////
-//////////////////////////
+
 const PORT = process.env.PORT
 
 app.listen(PORT, () => {

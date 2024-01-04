@@ -1,6 +1,6 @@
-//////////////////////////////////
+
 //// Import Dependencies      ////
-//////////////////////////////////
+
 const express = require('express') //express framework
 const morgan = require('morgan') //morgan logger for request info
 const session = require('express-session')
@@ -8,9 +8,9 @@ const MongoStore = require('connect-mongo') // connect-mongo(for the session)
 require('dotenv').config()
 const methodOverride = require('method-override') // for forms and CRUD
 
-//////////////////////////////////
+
 //// Middleware Function      ////
-//////////////////////////////////
+
 // instead of filling server.js with a buncha stuff
 // we'll contain our middleware actions to a single function
 // this function takes an entire app as an argument
