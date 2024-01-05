@@ -20,16 +20,12 @@ router.get('/all', async (req, res) => {
   const { username, loggedIn, userId } = req.session
   // we have to make out api call
   axios(listCoinUrl)
-    // if we get data, render an index page
     .then(apiRes => {
       let coin = apiRes.data
       console.log(coin)
       console.log('this came back from api: /n', coin.bitcoin)
-      // apiRes.data is an array of objects
-      res.send(coin)
-      //res.render('cryptos/index', {coin, username, userId, loggedIn})
+      res.render('cryptos/index.ejs', { coin, username, loggedIn, userId })
 
-      //res.send(apiRes.data)
     })
     // if something goes wrong display an error page
     .catch(err => {
