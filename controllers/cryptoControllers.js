@@ -3,8 +3,9 @@
 
 const express = require('express')
 const axios = require('axios')
-//const allCoinUrl = process.env.CURRENCIES_API_URL
 const listCoinUrl = process.env.API_BASE_URL
+const infoCoinUrl = process.env.INFO_BASE_URL
+//const allSearchBaseUrl = process.env.CURRENCIES_API_URL
 
 
 //// Create Router ////
@@ -34,12 +35,28 @@ router.get('/all', async (req, res) => {
   })
 })
 
-//give us a specific crypto details
+router.get('/info', async (req, res) => {
+  const { username, loggedIn, userId } = req.session
 
+  axios(infoCoinUrl)
+  let coin  = apiRes.data
+  console.log(coin)
+    .then(apiRes => {
+      let coin = apiRes.data
+      console.log(coin)
+      console.log('this came back from api: /n', coin.bitcoin)
+      res.render('cryptos/info', { coin, username, loggedIn, userId })
+    })
+    .catch(err => {
+      console.log('error')
+      res.redirect(`/error?error=${err}`)
+  })
+})
+//give us a specific crypto details
 
 
 //// Export Router ////
 
 module.exports = router
 
-//bitcoin,ethereum,tether,cardano,solana,dogecoin,polkadot,polygon,tron,avalanche,litecoin,stellar,
+

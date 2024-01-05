@@ -6,9 +6,11 @@
         <div class="card mt-3 me-3 coincard">
             <img src="<%= c.image %>" alt="Image of coin" class="card-img-top mt-3">
             <div class="card-body">
-              <h5 class="card-title"><%= c.name %></h5>
-              <p><%= c.symbol %></p>
-              <p><%= c.current_price %></p> 
+              <h5 class="card-title"><%= c.symbol %></h5>
+              <a href="/cryptos/info/<%= c.name %>" class="btn">Learn More</a>
+              <p><%= c.current_price %></p>
+              <p><%= c.market_cap %></p> 
+
             </div>
         </div>
     <% }) %>
