@@ -10,13 +10,13 @@ const { Schema, model } = mongoose
 
 //// Schema definition ////
 
-const userSchema = new Schema({
-    username: {
+const watchlistSchema = new Schema({
+    userId: {
         type: String,
         required: true,
         unique: true
     },
-    password: {
+    coinId: {
         type: String,
         required: true
     }
@@ -25,9 +25,9 @@ const userSchema = new Schema({
 
 //// create user model ////
 
-const User = model('User', userSchema)
+const Watchlist = model('Watchlist', watchlistSchema)
 
 
 //// export user model ////
 
-module.exports = User
+module.exports = Watchlist
