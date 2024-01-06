@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<div class="container center">
+  <div class="container row text-center">
+        <div class="card mt-3 me-3 ">
+            <img src="<%= coin.image.thumb %>" alt="Image of coin" class="card-img-top mt-3 thumb" >
+            <div class="card-body">
+              <h5 class="card-title"><%= coin.symbol %></h5>
+              <a href="/cryptos/info/<%= coin.id %>" class="btn"></a>
+              <p><%= coin.description.en %></p>
+              <p><%=  %></p> 
+
+            </div>
+        </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

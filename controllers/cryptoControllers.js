@@ -4,7 +4,7 @@
 const express = require('express')
 const axios = require('axios')
 const listCoinUrl = process.env.API_BASE_URL
-const infoCoinUrl = process.env.INFO_BASE_URL
+const infoCoinUrl = process.env.COIN_API_URL
 //const allSearchBaseUrl = process.env.CURRENCIES_API_URL
 
 
@@ -15,7 +15,7 @@ const router = express.Router()
 
 //// Routes + Controllers ////
 
-// GET -> /crypto/:name
+
 // gives us all crypto in the api index
 router.get('/all', async (req, res) => {
   const { username, loggedIn, userId } = req.session
@@ -23,8 +23,8 @@ router.get('/all', async (req, res) => {
   axios(listCoinUrl)
     .then(apiRes => {
       let coin = apiRes.data
-      console.log(coin)
-      console.log('this came back from api: /n', coin.bitcoin)
+      //console.log(coin)
+      //console.log('this came back from api: /n', coin.bitcoin)
       res.render('cryptos/index.ejs', { coin, username, loggedIn, userId })
 
     })
@@ -34,17 +34,17 @@ router.get('/all', async (req, res) => {
       res.redirect(`/error?error=${err}`)
   })
 })
-
-router.get('/info', async (req, res) => {
+// GET -> /info/:id
+// example: /info/bitcoin, /info/eth
+router.get('/info/:id', async (req, res) => {
   const { username, loggedIn, userId } = req.session
-
-  axios(infoCoinUrl)
-  let coin  = apiRes.data
-  console.log(coin)
+  const coinId = req.params.id
+  const url = `${infoCoinUrl}${coinId}`
+  console.log('print', url)
+  axios(url)
     .then(apiRes => {
       let coin = apiRes.data
-      console.log(coin)
-      console.log('this came back from api: /n', coin.bitcoin)
+      console.log('thiscoin', coin)
       res.render('cryptos/info', { coin, username, loggedIn, userId })
     })
     .catch(err => {
