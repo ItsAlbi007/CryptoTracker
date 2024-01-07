@@ -5,6 +5,7 @@ const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const Watchlist = require('../models/watchlist')
+const { all } = require('axios')
 
 
 //// Create Router ////
@@ -127,14 +128,20 @@ router.get('/watchlist', (req, res) => {
 router.post('/add', async (req,res) => {
     try{
         const {username, loggedIn, userId} = req.session
-      //  const watchlist = await Watchlist.find({owner: userId})
-        let newWatchlist = req.body
-        newWatchlist.owner = userId
-        newWatchlist = await Watchlist.create(req.body)
-        console.log(newWatchlist)
-        .then(done => {
-            res.redirect('/')
-        })
+        console.log('this is the user', userId)
+        const watchlist = await Watchlist.find({owner: userId, coinId: req.body.coinId})
+        console.log('this is the watchlist', watchlist)
+        if (watchlist.length == 0){
+            let newWatchlist = req.body
+            newWatchlist.owner = userId
+            console.log('this is the watchlist', newWatchlist)
+            newWatchlist = await Watchlist.create(req.body)
+            .then(done => {
+                res.redirect('/cryptos/all')
+            })
+        } else {
+        res.redirect('/cryptos/all')
+        }
     } catch(err) {
         console.log(err)
         res.redirect(`/error?error=${err}`)

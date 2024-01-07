@@ -11,7 +11,7 @@
               <p><%=  %></p> 
               <form action="/users/add" method="POST">
                 <fieldset>
-                    <input hidden type="text" name="base" value="<%= coin.current_price %>">
+                    <input hidden type="text" name="base" value="<%= coin.market_data %>">
                     <input hidden type="text" name="volume" value="<%= coin.market_cap %>">
                     <input hidden type="text" name="coinId" value="<%= coin.id %>">
                   </fieldset>

@@ -40,7 +40,7 @@ router.get('/info/:id', async (req, res) => {
   const { username, loggedIn, userId } = req.session
   const coinId = req.params.id
   const url = `${infoCoinUrl}${coinId}`
-  console.log(url)
+  //console.log(url)
   //console.log('print', url)
   axios(url)
     .then(apiRes => {

@@ -11,14 +11,14 @@ const { Schema, model } = mongoose
 //// Schema definition ////
 
 const watchlistSchema = new Schema({
-    base:{
-        type: String,
-        required: true
-    },
-    volume: {
-        type: String,
-        required: true
-    },
+    //base:{
+    //    type: String,
+    //    required: true
+   // },
+   // volume: {
+    //    type: String,
+    //    required: true
+   // },
     coinId: {
         type: String,
         required: true
@@ -26,7 +26,8 @@ const watchlistSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: false
     },
 }, {
     timestamps: true
