@@ -40,11 +40,12 @@ router.get('/info/:id', async (req, res) => {
   const { username, loggedIn, userId } = req.session
   const coinId = req.params.id
   const url = `${infoCoinUrl}${coinId}`
-  console.log('print', url)
+  console.log(url)
+  //console.log('print', url)
   axios(url)
     .then(apiRes => {
       let coin = apiRes.data
-      console.log('thiscoin', coin)
+     // console.log('thiscoin', coin)
       res.render('cryptos/info', { coin, username, loggedIn, userId })
     })
     .catch(err => {

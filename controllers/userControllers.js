@@ -4,6 +4,7 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const Watchlist = require('../models/watchlist')
 
 
 //// Create Router ////
@@ -109,6 +110,35 @@ router.delete('/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/')
     })
+})
+
+router.get('/watchlist', (req, res) => {
+    const { username, loggedIn, userId } = req.session
+    Watchlist.find({owner: userId})
+    .then(userWatchlist => {
+        res.render('users/watchlist', {watchlist: userWatchlist, username, userId, loggedIn})
+    })
+    .catch(err => {
+        console.log('error')
+        res.redirect(`/error?error=${err}`)
+    })
+})
+
+router.post('/add', async (req,res) => {
+    try{
+        const {username, loggedIn, userId} = req.session
+      //  const watchlist = await Watchlist.find({owner: userId})
+        let newWatchlist = req.body
+        newWatchlist.owner = userId
+        newWatchlist = await Watchlist.create(req.body)
+        console.log(newWatchlist)
+        .then(done => {
+            res.redirect('/')
+        })
+    } catch(err) {
+        console.log(err)
+        res.redirect(`/error?error=${err}`)
+    }
 })
 
 
