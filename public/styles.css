@@ -28,3 +28,7 @@ img {
 .homepage-img {
   width: 100%;
 }
+
+.homepage {
+  max-width: 600px;
+}
