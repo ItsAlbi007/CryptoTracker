@@ -5,8 +5,8 @@ const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const Watchlist = require('../models/watchlist')
-const { all } = require('axios')
-
+const { all, default: axios } = require('axios')
+const listCoinUrl = process.env.API_BASE_URL
 
 //// Create Router ////
 
@@ -113,11 +113,12 @@ router.delete('/logout', (req, res) => {
     })
 })
 
-router.get('/watchlist', (req, res) => {
+router.get('/main', async (req, res) => {
     const { username, loggedIn, userId } = req.session
+    axios(listCoinUrl)
     Watchlist.find({owner: userId})
     .then(userWatchlist => {
-        res.render('users/watchlist', {watchlist: userWatchlist, username, userId, loggedIn})
+        res.render('users/main', {watchlist: userWatchlist, username, userId, loggedIn})
     })
     .catch(err => {
         console.log('error')

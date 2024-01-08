@@ -5,16 +5,11 @@
         <div class="card mt-3 me-3 ">
             <img src="<%= coin.image.thumb %>" alt="Image of coin" class="card-img-top mt-3 thumb" >
             <div class="card-body">
-              <h5 class="card-title"><%= coin.symbol %></h5>
+              <h5 class="card-title"><%= coin.name %></h5>
               <a href="/cryptos/info/<%= coin.id %>" class="btn"></a>
+              <p><%= coin.currency %></p> 
               <p><%= coin.description.en %></p>
-              <p><%=  %></p> 
               <form action="/users/add" method="POST">
-                <fieldset>
-                    <input hidden type="text" name="base" value="<%= coin.market_data %>">
-                    <input hidden type="text" name="volume" value="<%= coin.market_cap %>">
-                    <input hidden type="text" name="coinId" value="<%= coin.id %>">
-                  </fieldset>
                 <div class="d-grid gap-2 col-3 mx-auto">
                     <button type="submit" class="btn btn-outline-dark favButton" value="watchlist">Favorite</button>
                 </div>
