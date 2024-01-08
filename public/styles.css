@@ -2,8 +2,13 @@ body {
   background-color: lightsteelblue;
 }
 
-.coincard {
-  width:10%;
+.coin-card {
+  min-width: 100px;
+  max-width: 150px;
+}
+
+.watchlist-card {
+  padding: 10px;
 }
 
 img {
@@ -18,4 +23,8 @@ img {
 .delete {
   background-color: red;
   color: white;
+}
+
+.homepage-img {
+  width: 100%;
 }

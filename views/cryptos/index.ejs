@@ -3,18 +3,14 @@
 <div class="container center">
   <div class="container row text-center">
     <% coin.forEach((c) => {%>
-        <div class="card mt-3 me-3 coincard">
+        <div class="card mt-3 me-3 coin-card">
             <img src="<%= c.image %>" alt="Image of coin" class="card-img-top mt-3">
             <div class="card-body">
               <h5 class="card-title"><%= c.symbol %></h5>
-              <a href="/cryptos/info/<%= c.id %>" class="btn">Learn More</a>
-              <p><%=  %></p>
-              <p><%=  %></p> 
-
+              <a href="/cryptos/info/<%= c.id %>" class="btn btn-primary">Learn More</a>
             </div>
         </div>
     <% }) %>
-    
   </div>
 </div>
 

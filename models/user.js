@@ -6,8 +6,6 @@ const mongoose = require('../utils/connection')
 // destructuring the Schema and model from mongoose
 const { Schema, model } = mongoose
 
-
-
 //// Schema definition ////
 
 const userSchema = new Schema({
@@ -22,11 +20,9 @@ const userSchema = new Schema({
     }
 })
 
-
 //// create user model ////
 
 const User = model('User', userSchema)
-
 
 //// export user model ////
 

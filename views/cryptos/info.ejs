@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<div class="container center">
+<div class="container center mb-3">
   <div class="container row text-center">
         <div class="card mt-3 me-3 ">
             <img src="<%= coin.image.thumb %>" alt="Image of coin" class="card-img-top mt-3 thumb" >
@@ -12,7 +12,7 @@
               <form action="/users/add" method="POST">
                 <fieldset>
                   <label for="nickname">Nickname:</label>
-                  <input type="text" name="nickname">
+                  <input type="text" name="nickname" class="mb-3">
                   <input hidden type="text" name="coinId" value="<%= coin.id %>">
                   <input hidden type="number" name="currentPrice" value="<%= coin.market_data.current_price.usd %>">
               </fieldset>
