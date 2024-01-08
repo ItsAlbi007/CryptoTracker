@@ -6,7 +6,7 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const Watchlist = require('../models/watchlist')
 const { all, default: axios } = require('axios')
-const listCoinUrl = process.env.API_BASE_URL
+
 
 //// Create Router ////
 
@@ -115,9 +115,9 @@ router.delete('/logout', (req, res) => {
 
 router.get('/main', async (req, res) => {
     const { username, loggedIn, userId } = req.session
-    axios(listCoinUrl)
     Watchlist.find({owner: userId})
     .then(userWatchlist => {
+        console.log('this is userwatch', userWatchlist)
         res.render('users/main', {watchlist: userWatchlist, username, userId, loggedIn})
     })
     .catch(err => {
@@ -133,10 +133,14 @@ router.post('/add', async (req,res) => {
         const watchlist = await Watchlist.find({owner: userId, coinId: req.body.coinId})
         console.log('this is the watchlist', watchlist)
         if (watchlist.length == 0){
-            let newWatchlist = req.body
-            newWatchlist.owner = userId
-            console.log('this is the watchlist', newWatchlist)
-            newWatchlist = await Watchlist.create(req.body)
+            console.log('this is the body', req.body)
+            const newWatchList = {
+                owner: userId,
+                coinId: req.body.coinId,
+                currentPrice: req.body.currentPrice
+
+            }
+            await Watchlist.create(newWatchList)
             .then(done => {
                 res.redirect('/cryptos/all')
             })
@@ -147,6 +151,28 @@ router.post('/add', async (req,res) => {
         console.log(err)
         res.redirect(`/error?error=${err}`)
     }
+})
+
+router.delete('/delete/:id', (req, res) => {
+    const { username, loggedIn, userId} = req.session
+    const watchlistId = req.params.id
+    Watchlist.findById(watchlistId)
+    .then(watchlist => {
+
+        if (watchlist.owner == userId) {
+            return watchlist.deleteOne()
+        } else {
+            res.redirect(`/error?error=You%20Are%20Not%20Allowed%20to%20Delete%20this%20watchlist`)
+        }
+    })
+    .then(deletedWatchlist => {
+
+        res.redirect('/users/main')
+    })
+    .catch(err => {
+        console.log('error')
+        res.redirect(`/error?error=${err}`)
+    })
 })
 
 

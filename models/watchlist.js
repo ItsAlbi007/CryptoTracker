@@ -29,6 +29,10 @@ const watchlistSchema = new Schema({
         required: true,
         unique: false
     },
+    currentPrice: {
+        type: Number,
+        required: true
+    }
 }, {
     timestamps: true
 })

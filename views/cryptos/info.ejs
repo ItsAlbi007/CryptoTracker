@@ -10,6 +10,10 @@
               <p><%= coin.currency %></p> 
               <p><%= coin.description.en %></p>
               <form action="/users/add" method="POST">
+                <fieldset>
+                  <input hidden type="text" name="coinId" value="<%= coin.id %>">
+                  <input hidden type="number" name="currentPrice" value="<%= coin.market_data.current_price.usd %>">
+              </fieldset>
                 <div class="d-grid gap-2 col-3 mx-auto">
                     <button type="submit" class="btn btn-outline-dark favButton" value="watchlist">Favorite</button>
                 </div>

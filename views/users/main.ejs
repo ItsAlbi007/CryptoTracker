@@ -3,16 +3,16 @@
 <div class="container center">
   <div class="container row text-center">
     <% watchlist.forEach((w) => {%>
-        <div class="card mt-3 me-3 coincard">
-            <img src="<%= w.image%>" alt="Image of coin" class="card-img-top mt-3">
+        <div class="card mt-3 me-3 ">
             <div class="card-body">
-              <h5 class="card-title"><%= w.symbol %></h5>
-              <a href="/cryptos/info/<%= w.id %>"</a>
-              <p><%=  %></p>
-              <p><%=  %></p> 
+              <h5 class="card-title"><%= w.coinId %></h5>
+              <p> $ <%= w.currentPrice %></p>
 
             </div>
         </div>
+        <form class="me-3" action="/users/delete/<%= w._id %>?_method=DELETE" method="POST">
+          <input type="submit" class="btn btn-danger" value="Delete this Coin">
+      </form>
     <% }) %>
     
   </div>
