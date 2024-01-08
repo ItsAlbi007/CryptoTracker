@@ -11,6 +11,8 @@
               <p><%= coin.description.en %></p>
               <form action="/users/add" method="POST">
                 <fieldset>
+                  <label for="nickname">Nickname:</label>
+                  <input type="text" name="nickname">
                   <input hidden type="text" name="coinId" value="<%= coin.id %>">
                   <input hidden type="number" name="currentPrice" value="<%= coin.market_data.current_price.usd %>">
               </fieldset>

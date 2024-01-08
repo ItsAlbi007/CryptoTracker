@@ -137,12 +137,12 @@ router.post('/add', async (req,res) => {
             const newWatchList = {
                 owner: userId,
                 coinId: req.body.coinId,
-                currentPrice: req.body.currentPrice
-
+                currentPrice: req.body.currentPrice,
+                nickname: req.body.nickname
             }
             await Watchlist.create(newWatchList)
             .then(done => {
-                res.redirect('/cryptos/all')
+                res.redirect('/users/main')
             })
         } else {
         res.redirect('/cryptos/all')
@@ -152,6 +152,33 @@ router.post('/add', async (req,res) => {
         res.redirect(`/error?error=${err}`)
     }
 })
+
+router.put('/update/:id', (req, res) => {
+    const { username, loggedIn, userId } = req.session
+
+    const watchlistId = req.params.id
+    const theUpdatedWatchlist = req.body
+    delete theUpdatedWatchlist.owner
+    theUpdatedWatchlist.owner = userId
+
+    Watchlist.findById(watchlistId)
+        .then(foundWatchlist => {
+            if (foundWatchlist.owner == userId) {
+                console.log('this is the update', theUpdatedWatchlist)
+                return foundWatchlist.updateOne(theUpdatedWatchlist)
+            } else {
+                res.redirect(`/error?error=You%20Are%20Not%20Allowed%20to%20Update%20this%20Watchlist`)
+            }
+        })
+        .then(returnedWatchlist => {
+            res.redirect(`/users/main`)
+        })
+        .catch(err => {
+            console.log('error')
+            res.redirect(`/error?error=${err}`)
+        })
+})
+
 
 router.delete('/delete/:id', (req, res) => {
     const { username, loggedIn, userId} = req.session
