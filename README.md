@@ -25,7 +25,7 @@ This app allows people to select and favorite specific crypto coins and keep tra
 
 # Getting Started
 
-[Click to check out crypto tracker]( )
+[Click to check out crypto tracker](https://cryptotracker.fly.dev/ )
 
 # Next Steps
 
